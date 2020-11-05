@@ -160,7 +160,7 @@ input:focus, input:active, button:active, button:focus {
   text-align: center;
   text-transform: uppercase;
   color: #00ff99;
-  letter-spacing: 0 0.3rem;
+  letter-spacing: 0.3rem;
   padding: 1.5rem 2.5rem;
   border: none;
   border-radius: 0;

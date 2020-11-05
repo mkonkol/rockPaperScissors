@@ -1,6 +1,5 @@
 .button {
-    @include textStyle($weight: 600, $font: $font-montserrat, $space: 0
-    .3rem, $transform: uppercase, $color: $cyan-green);
+    @include textStyle($weight: 600, $font: $font-montserrat, $space: 0.3rem, $transform: uppercase, $color: $cyan-green);
     @include padding(all, (1.5rem 2.5rem));
 
     border: none;
