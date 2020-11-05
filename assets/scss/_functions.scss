@@ -1,0 +1,12 @@
+@function multiple-shadow ($n, $blur, $color) {
+    $value: '0 0 #{$blur}rem #{$color}';
+    @for $i from 3 through $n {
+      $value: '#{$value} , 0 0 #{$i * $blur}rem' + darken($color, $i);
+    }
+  
+    @return unquote($value);
+}
+
+@function color-opacity ($color, $alpha) {
+  @return rgba($color, $alpha);
+}

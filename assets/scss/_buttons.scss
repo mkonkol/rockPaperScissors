@@ -1,0 +1,53 @@
+.button {
+    @include textStyle($weight: 600, $font: $font-montserrat, $space: 0
+    .3rem, $transform: uppercase, $color: $cyan-green);
+    @include padding(all, (1.5rem 2.5rem));
+
+    border: none;
+    border-radius: 0;
+
+    background-color: transparent;
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover {
+        color: $dark;
+    }
+}
+
+.btn { 
+    &--new-game {
+        @include buttonStyle();
+        @include margin();
+        z-index: 3;
+    }
+
+    &--start-again {
+        @include absolutePosition($left: 50%, $bottom: 2rem, $transform: true);
+        @include margin();
+    }
+
+    &--open-modal {
+        @include absolutePosition(60%, 50%, $transform: true);
+        @include textStyle($size: 3rem, $space: 0.5rem, $transform: uppercase);
+        @include buttonStyle();
+        @include padding(all, (3rem 7rem));
+        -webkit-box-reflect: below 0 linear-gradient(transparent, color-opacity($dark, 0.6));
+        @include neonFrame($cyan-green);
+        z-index: 1;
+    
+        &.small {
+            @include padding();
+
+            width: 15rem;
+            -webkit-box-reflect: inherit;
+            font-size: inherit;
+            top: calc(100% - 5rem);
+            left: calc(100% - 9.5rem);
+        }
+    
+        &:not(.small):hover {
+            -webkit-box-reflect: below 0 linear-gradient(transparent, color-opacity($dark, 0.6));
+        }
+    }
+}

@@ -1,0 +1,52 @@
+@include keyframes(walking) {
+    from { background-position: 0 100%; }
+    to { background-position: 0 0; }
+}
+
+@include keyframes(squareTwo) {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(180deg); }
+}
+
+@include keyframes(turnOff) {
+    30% {
+        width: 100vw;
+        height: 0.5rem;
+        background: $white;
+    };
+    100% {
+        width: 0;
+        height: 0;
+        background: $white;
+    }
+}
+
+@include keyframes(borderBottom) {
+    0% {
+        width: 0.5rem;
+        left: 0;
+    }
+    50% {
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+    100% {
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+}
+
+@include keyframes(flashing) {
+    0%, 18.99%, 20.99%, 23.99%, 30.99%, 38.99%, 48.99%, 51.99%, 58.99%, 63.99%, 73.99%, 80.99%, 86.99%, 100%
+    {
+      opacity: 1;
+      text-shadow: 0 0 8rem $white, 0 0 3rem $pink, 0 0 0.5rem $orange;
+    }
+    19%, 21%, 24%, 31%, 39%, 49%, 52%, 59%, 64%, 74%, 81%, 87%, 95%
+    {
+      opacity: 0.5;
+      text-shadow: none;
+    }
+}

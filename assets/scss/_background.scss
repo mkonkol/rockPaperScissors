@@ -1,0 +1,99 @@
+.background {
+    @include flex();
+    @include screen();
+
+    z-index: -1;
+
+    &::before {
+        content: "";
+        @include absoluteFullScreen();
+
+        filter: contrast(0.85);
+        background-image: url("../images/city.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+.background-game::after {
+    content: "";
+    @include absoluteFullScreen();
+
+    background: color-opacity($dark-blue2, 0.75);
+    background: {
+        image: linear-gradient(90deg, color-opacity($dark-blue2, 0.5), color-opacity($dark-blue1, 0.75));
+        repeat: no-repeat;
+        size: cover;
+    };
+}
+
+.container__sun {
+    @include screen(30rem, 30rem);
+    @include absolutePosition(50%, 50%, $transform: true);
+
+    border-radius: 50%;
+    background: $orange;
+    background: repeating-linear-gradient(0deg, $pink, color-opacity($orange, 0.6) 0.2rem, $white 0.4rem, $white 0.5rem);
+    filter: blur(0.1rem);
+    box-shadow: 0 0 1.5rem 0.5rem color-opacity($strong-pink, 0.6), 0 0 1rem 0 color-opacity($orange, 0.8);
+    z-index: -1;
+
+    &::after {
+        content: "";
+        @include absoluteFullScreen();
+
+        border-radius: 50%;
+        background: linear-gradient(180deg, color-opacity($strong-pink, 0.75) 0%, color-opacity($orange, 0.3) 100%);
+    }
+}
+
+.container__grid {
+    @include screen(200vw, 50vh);
+  
+    margin: 0 -50%;
+    overflow: hidden;
+    transform: perspective(20rem) rotateX(60deg);
+    background: linear-gradient(0deg, $dark-blue1, transparent);
+
+    @include borderStyle($direction: top, $width: 1.5rem);
+
+    box-shadow: 0 -1.5rem 5rem 1.5rem $cyan;
+    z-index: 1;
+
+    &--tron {
+        @include screen(100%, 50vh);
+
+        background: {
+            image: repeating-linear-gradient(0deg, $cyan, $cyan 0.2rem, transparent 0.1rem, transparent 4rem), repeating-linear-gradient(-90deg, $cyan, $cyan 0.2rem, transparent 0.2rem, transparent 4rem);
+            size: 4rem 4rem;
+            position: top;
+        };
+
+        filter: drop-shadow( 0 0 0.5rem $cyan );
+        box-shadow: inset 0 0 3.5rem 2rem $white;
+
+        @include animation('walking 3s infinite linear forwards');
+    }
+}
+
+.background-end {
+    @include screen(100vw, 100%);
+
+    position: fixed;
+    background: color-opacity($dark, 0.75);
+    z-index: 2;
+
+    &--turn-off {
+        @include screen();
+        
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        overflow: hidden;
+        transition: all .3s;
+        @include animation('turnOff 1s ease-in-out');
+        z-index: 1;
+    }
+}

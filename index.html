@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamień Papier Nożyce</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/css/app.min.css">
+
+    <!-- Scripts -->
+    <script type="module" src="assets/js/app.js" defer></script>
+</head>
+<body>
+    <div id="app">
+        <div id="background" class="background">
+            <div class="grow">
+                <div class="container">
+                    <h1>
+                        Ka<span>m</span>ień<span class="space"></span><span>P</span>apier<span class="space"></span><span>N</span>oży<span>ce</span>
+                    </h1>
+                </div>
+                <div class="container">
+                    <div class="container__sun"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="container__grid">
+                    <div class="container__grid--tron"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="board-game" class="board hidden">
+            <div class="container">
+                <div class="round">
+                    <p id="round--number" class="round--number"></p>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="scoreboard">
+                    <div class="scoreboard__name">
+                        <p id="user-name" class="scoreboard__name--user"></p>
+                    </div>
+                    <div class="scoreboard__scores">
+                        <p id="user-score" class="scoreboard__scores--user"></p>
+                        <span class="colon">:</span>
+                        <p id="bot-score" class="scoreboard__scores--bot"></p>
+                    </div>
+                    <div class="scoreboard__name">
+                        <p id="bot-name" class="scoreboard__name--bot"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container grow column">
+                <div class="field">
+                    <div id="user-field" class="field--user"></div>
+                    <div id="versus" class="field__versus hidden">VS</div>
+                    <div id="bot-field" class="field--bot"></div>
+                </div>
+                <div class="info">
+                    <p id="round-winner" class="info--round-winner"></p>
+                </div>
+            </div>
+
+            <div class="container">
+                <div id="user-options" class="user-options">
+                    <div class="option">
+                        <label for="rock" class="option__label"></label>
+                        <input type="radio" name="options" id="rock">
+                    </div>
+                    <div class="option">
+                        <label for="paper" class="option__label"></label>
+                        <input type="radio" name="options" id="paper">
+                    </div>
+                    <div class="option">
+                        <label for="scissors" class="option__label"></label>
+                        <input type="radio" name="options" id="scissors">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

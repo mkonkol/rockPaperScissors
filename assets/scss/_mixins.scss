@@ -1,0 +1,180 @@
+@mixin buttonStyle ($boxShadow: multiple-shadow(5, 0.5, $cyan-green), $color: $cyan-green) {
+    color: $color;
+    border: 0.2rem solid $color;
+    
+    &:hover {
+        background-color: $color;
+        @include boxShadow($boxShadow);
+    }
+
+    // &:focus {
+
+    // }
+
+    // &:active {
+      
+    // }
+}
+
+@mixin gradient ($direction, $list) { 
+    background: -webkit-linear-gradient($direction, $list);
+    background: -moz-linear-gradient($direction, $list);
+    background: -o-linear-gradient($direction, $list);
+    background: linear-gradient($direction, $list);  
+}
+
+@mixin absolutePosition ($top: null, $left: null, $right: null, $bottom: null, $transform: false) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  right: $right;
+  bottom: $bottom;
+
+  @if $transform == true {
+    @if $top != null {
+      transform: translate(-$left, -$top);
+    } @else if $bottom != null {
+      transform: translate(-$left, -$bottom);
+    }
+  }
+}
+
+@mixin flex ($align: center, $justify: center, $direction: column) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+}
+
+@mixin screen ($width: 100vw, $height: 100vh, $min-w: null, $min-h: null, $max-w: null, $max-h: null) {
+  width: $width;
+  height: $height;
+  min-width: $min-w;
+  min-height: $min-h;
+  max-width: $max-w;
+  max-height: $max-h;
+}
+
+@mixin borderStyle ($direction: all, $width: 0.1rem, $style: solid, $color: $white, $radius: null) {
+  @if $direction == all {
+    border: $width $style $color;
+  } @else {
+    border-#{$direction}: $width $style $color;
+  }
+  border-radius: $radius;
+}
+
+@mixin textStyle ($size: 1.6rem, $weight: normal, $font: null, $align: center, $transform: inherit, $color: $white, $space: inherit) {
+  
+  @if $font == monoton {
+    font-family: 'Monoton', 'Montserrat Alternates', sans-serif;
+  } @else if $font == sriracha {
+    font-family: 'Sriracha', 'Montserrat Alternates', sans-serif;
+  } @else {
+    font-family: $font;
+  }
+  
+  font: {
+    size: $size;
+    weight: $weight;
+  }
+
+  text: {
+    align: $align;
+    transform: $transform;
+  }
+
+  color: $color;
+  letter-spacing: $space;
+}
+
+// -webkit-gradient || -webkit-linear-gradient
+@mixin textGradient($dir, $from, $to) {
+  background: -webkit-linear-gradient($dir, $from, $to);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin padding($direction: all, $size: 1rem) {
+  @if $direction == all {
+    padding: $size;
+  } @else {
+    padding-#{direction}: $size;
+  }
+}
+
+@mixin margin($direction: all, $size: 1rem) {
+  @if $direction == all {
+    margin: $size;
+  } @else {
+    margin-#{direction}: $size;
+  }
+}
+
+@mixin neonFrame ($color: $cyan) {
+  @include boxShadow(0 0 0 0.1vw $cyan, 0 0 1vw 0 $cyan, inset 0 0 0.5vw 0);
+}
+
+@mixin highlightText ($color: $cyan-green) {
+  text-shadow: 0 0 0.1vw $color, 0 0 1vw $color, 0 0 0.5vw $color;
+}
+
+@mixin boxShadow ($params...) {
+  -webkit-box-shadow: $params;
+  -moz-box-shadow: $params;
+  box-shadow: $params;
+}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+      @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+      @content;
+  }  
+  @-ms-keyframes #{$animation-name} {
+      @content;
+  }
+  @-o-keyframes #{$animation-name} {
+      @content;
+  }  
+  @keyframes #{$animation-name} {
+      @content;
+  }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
+
+@mixin absoluteFullScreen () {
+  @include screen(100%, 100%);
+  @include absolutePosition(0, 0);
+}
+
+@mixin stars () {
+  content: "";
+      @include absolutePosition(0, 0);
+      @include screen(0.1rem, 0.1rem);
+
+      background: transparent;
+
+      box-shadow: 12.9rem 18.4rem #FFF, 101.2rem 3.7rem #FFF, 47.1rem 23.5rem #FFF, 152.4rem 13.3rem #FFF, 71.6rem 10.6rem #FFF, 68.7rem 20.0rem #FFF, 12.5rem 13.1rem #FFF, 150.3rem 18.4rem #FFF, 185.7rem 15.2rem #FFF, 90.8rem 23.3rem #FFF, 44.9rem 1.3rem #FFF, 103.1rem 23.3rem #FFF, 4.1rem 11.0rem #FFF, 114.2rem 23.2rem #FFF, 88.2rem 14.1rem #FFF, 76.6rem 2.1rem #FFF, 164.8rem 7.5rem #FFF, 35.8rem 5.1rem #FFF, 160.9rem 20.4rem #FFF, 87.8rem 16.6rem #FFF, 25.1rem 3.9rem #FFF, 151.7rem 14.6rem #FFF, 174.7rem 19.4rem #FFF, 76.5rem 15.1rem #FFF, 84.5rem 15.8rem #FFF, 7.0rem 2.1rem #FFF, 84.5rem 3.3rem #FFF, 83.6rem 6.9rem #FFF, 75.0rem 13.8rem #FFF, 63.5rem 20.0rem #FFF, 76.0rem 10.2rem #FFF, 190.9rem 16.8rem #FFF, 131.0rem 4.1rem #FFF, 131.8rem 11.0rem #FFF, 53.6rem 9.7rem #FFF, 143.8rem 22.6rem #FFF, 186.2rem 13.1rem #FFF, 28.0rem 15.7rem #FFF, 73.8rem 22.5rem #FFF, 70.9rem 8.3rem #FFF, 9.8rem 5.1rem #FFF, 137.7rem 4.8rem #FFF, 61.1rem 22.0rem #FFF, 144.6rem 6.6rem #FFF, 133.3rem 6.5rem #FFF, 107.9rem 3.8rem #FFF, 10.1rem 12.7rem #FFF, 46.5rem 1.4rem #FFF, 180.9rem 15.2rem #FFF, 126.1rem 14.9rem #FFF, 137.8rem 4.3rem #FFF, 86.7rem 6.0rem #FFF, 103.9rem 17.5rem #FFF, 183.3rem 16.9rem #FFF, 63.4rem 12.4rem #FFF, 19.6rem 18.9rem #FFF, 158.5rem 12.7rem #FFF, 72.6rem 19.6rem #FFF, 126.5rem 11.8rem #FFF, 182.6rem 14.3rem #FFF, 185.8rem 10.1rem #FFF, 21.7rem 18.6rem #FFF, 66.3rem 6.9rem #FFF, 124.4rem 0.7rem #FFF, 176.5rem 12.2rem #FFF, 161.9rem 10.0rem #FFF, 64.0rem 8.6rem #FFF, 169.7rem 21.4rem #FFF, 151.8rem 20.7rem #FFF, 158.0rem 7.0rem #FFF, 112.9rem 22.0rem #FFF, 122.3rem 16.9rem #FFF, 180.6rem 3.1rem #FFF, 152.0rem 17.6rem #FFF, 183.5rem 15.3rem #FFF, 77.7rem 11.8rem #FFF, 23.6rem 23.6rem #FFF, 185.3rem 17.3rem #FFF, 36.6rem 1.0rem #FFF, 112.6rem 9.6rem #FFF, 84.5rem 16.4rem #FFF, 53.1rem 8.7rem #FFF, 101.2rem 7.4rem #FFF, 33.9rem 12.9rem #FFF, 157.9rem 7.0rem #FFF, 35.7rem 5.8rem #FFF, 144.9rem 18.7rem #FFF, 150.9rem 24.3rem #FFF, 99.9rem 14.0rem #FFF, 45.3rem 23.0rem #FFF, 63.6rem 17.5rem #FFF, 45.8rem 8.5rem #FFF, 58.8rem 18.3rem #FFF, 89.9rem 22.6rem #FFF, 183.6rem 3.1rem #FFF, 46.7rem 3.3rem #FFF, 137.3rem 18.6rem #FFF, 84.4rem 21.0rem #FFF, 93.7rem 23.6rem #FFF, 103.3rem 11.7rem #FFF;
+}
+
+// TO DO
+@mixin respond-to ($media, $break-small, ) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}

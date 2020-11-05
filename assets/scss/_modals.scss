@@ -1,0 +1,88 @@
+.container__modal {
+    @include flex();
+    @include screen();
+    @include absolutePosition(0, 0);
+    background-color: color-opacity($dark, 0.6);
+    z-index: 1;
+
+    .modal {
+        position: relative;
+
+        @include screen(70%, 50%, 38rem, null, 70rem, 36.5rem);
+
+        background: linear-gradient(180deg, $dark 0%, $dark-cyan1 100%);
+        box-shadow: 0 0 5rem 0rem $cyan-green, 0 0 5rem 5rem $dark-blue1;
+
+        z-index: 2;
+
+        &::before {
+            content: "";
+            @include absoluteFullScreen();
+            background: repeating-linear-gradient(0deg, color-opacity($dark-blue2, 0.8), transparent 0.2rem);
+        }
+
+        &__body {
+            height: 100%;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            border: 0.1rem solid $dark-blue1;
+
+            &::before {
+                content: "";
+                @include absolutePosition(50%, 50%, $transform: true);
+
+                width: calc(100% - 1.5rem);
+                height: calc(100% - 1.5rem);
+                border: 0.1rem solid $dark-blue1;
+                box-shadow: 0 0 1rem 0.5rem $dark-blue2;
+            }
+        }
+    }
+
+    &.modal-finished, .modal-finished {
+        @include screen(100%, 100%);
+        background: linear-gradient(180deg, color-opacity($dark, 0.3) 0%, $dark-cyan1 100%);
+        z-index: 3;
+
+        &__body {
+            position: relative;
+            background: $dark-cyan1;
+            background: linear-gradient(180deg, $dark 0%, $dark-cyan1 100%);
+            
+            @include screen(60%, auto, 30rem, 40%);
+            @include padding();
+            @include margin();
+
+            box-shadow: 0 0 2rem 1rem $cyan-green, 0 0 3rem 1.5rem $dark;
+            transition: all .3s;
+
+            &::before {
+                content: "";
+                @include absoluteFullScreen();
+                background: repeating-linear-gradient(0deg, color-opacity($dark-blue2, 0.8), transparent 0.2rem);
+            }
+        }
+    }
+}
+
+.text {
+
+    &--monoton {
+        @include margin();
+        @include textStyle($size: 5rem, $font: monoton, $transform: uppercase);
+        @include textGradient(top, $yellow, $cyan-green);
+
+        text-shadow: 0 0 1.5rem $cyan-green;
+        z-index: 3;
+    }
+
+    &--winner {
+        @include absolutePosition(20%, 50%, $transform: true);
+        @include padding();
+        @include margin();
+        @include textStyle($size: 3rem, $space: 0.3rem);
+
+        width: 100%;
+    }
+}

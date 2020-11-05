@@ -1,0 +1,223 @@
+.round {
+    flex: 1;
+    position: relative;
+    @include padding();
+    text-align: center;
+    background: transparent;
+    box-shadow: 0 1rem 2rem 0 color-opacity($dark-blue1, 0.6);
+
+    &--number {
+        @include textStyle($size: 5rem, $font: sriracha, $space: 0.3rem);
+        @include highlightText();
+    }
+
+    &.light::before {
+        content: "";
+
+        @include absolutePosition($left: -1rem, $bottom: 0.1rem);
+        @include screen(0.5rem, 0.5rem);
+        background: $white;
+        @include borderStyle($direction: bottom, $width: 0.2rem, $radius: 50%);
+        @include neonFrame();
+        @include animation('borderBottom 2s ease-in forwards');
+    }
+
+    &::after {
+        @include stars();
+    }
+}
+
+.scoreboard {
+    @include flex($direction: row);
+    @include screen(100%, auto, $min-h: 12rem);
+    @include margin();
+    @include margin(top, 2rem);
+
+    &__scores {
+        @include textStyle($size: 2rem);
+        @include screen(auto, 9rem, 20rem, $max-w: 20rem);
+        @include neonFrame();
+
+        text-shadow: 0 0 0.5rem $cyan, 0 0 1.5rem $green;
+
+        &--user,
+        &--bot {
+            display: inline-block;
+            @include screen(45%, 100%);
+            @include padding(all, 2rem);
+            @include textStyle($size: 4rem, $space: 0.5rem, $color: $cyan);
+        }
+    }
+
+    &__name {
+        flex: 33%;
+
+        &--user,
+        &--bot {
+            @include textStyle($size: 4rem, $font: monoton, $space: 0.3rem, $transform: uppercase);
+            @include highlightText($green);
+        }
+    }
+}
+
+.info {
+    @include margin();
+
+    &--round-winner {
+        @include textStyle($size: 3.5rem, $weight: bolder, $space: 0.3rem, $transform: uppercase);
+        @include highlightText();
+    }
+}
+
+.field {
+    @include flex($direction: row);
+    @include screen(100%, auto, $min-h: 21rem);
+
+    text-align: center;
+
+    &__versus {
+        @include textStyle($size: 7.5rem,$font: monoton, $space: 0.3rem, $transform: uppercase, $color: $white);
+        @include highlightText();
+    }
+
+    &__image {
+        max-width: 20rem;
+        filter: drop-shadow(0 0 5vw $cyan-green);
+    }
+
+    &--user,
+    &--bot {
+        flex: 33%;
+    }
+}
+
+h1 {
+    width: 100%;
+    @include textStyle($size: 8rem, $font: monoton, $space: 0.5rem, $transform: uppercase, $color: $cyan-green);
+    @include margin($size: (2rem 1rem));
+    text-shadow: 0 0 8rem $white, 0 0 3rem $pink, 0 0 1rem $orange;
+    z-index: 1;
+
+    span {
+        font-family: 'Monoton', 'Montserrat Alternates', sans-serif;
+        text-shadow: none;
+        opacity: 0.7;
+    }
+
+    span:nth-child(3), span:last-of-type {
+        @include animation('flashing 10s linear infinite');
+    }
+
+    span.space {
+        display: inline-block;
+        @include screen(4rem, auto);
+    }
+
+    &::after {
+        @include stars();
+    }
+}
+
+.colon {
+    @include textStyle($size: 4rem, $color: $cyan-blue);
+}
+
+.user-options {
+    @include flex($direction: row);
+    flex: 1;
+    flex-basis: auto;
+
+    background: #341e4c;
+    background: linear-gradient(180deg, color-opacity($dark-cyan2, 0.8) 00%, $dark-cyan2 50%, $dark 100%);
+    @include padding();
+    box-shadow: 0 -1rem 3rem 0 $dark-cyan2;
+}
+
+input[name=options] {
+    visibility: hidden;
+}
+
+.board {
+    @include flex();
+    @include absoluteFullScreen();
+
+    flex-grow: 1;
+}
+
+.name {
+    @include padding();
+    text-align: center;
+    z-index: 3;
+
+    &__label {
+        display: block;
+        @include textStyle($size: 1.8rem, $weight: 700, $space: 0.2rem, $transform: uppercase, $color: $cyan-green);
+        @include padding($size: (1rem 0));
+    }
+
+    &__input {
+        width: 100%;
+        @include padding();
+        @include margin($size: (1.5rem 0));
+        @include textStyle($space: 0.1rem, $transform: uppercase, $color: $dark);
+
+        border: 0.1rem solid $cyan;
+        border-radius: 0;
+
+        @include boxShadow(0 0 0 0.1vw $cyan, 0 0 1vw 0 $cyan);
+    
+        &:focus {
+            @include boxShadow(0 0 0 0.1vw $green, 0 0 1vw 0 $green);
+        }
+    }
+}
+
+.option {
+    position: relative;
+    cursor: pointer;
+    @include screen(10rem, 10rem);
+    @include padding($size: 0.5rem);
+    @include margin($size: (2.5rem 5.5rem));
+    @include borderStyle($width: 0.2rem, $color: $cyan);
+    @include neonFrame();
+
+    transform: rotate(45deg);
+
+    &.active-animation::before{
+        content: "";
+        @include absoluteFullScreen();
+        @include borderStyle($width: 0.2rem, $color: $cyan);
+        @include neonFrame();
+        @include animation('squareTwo 2s .22s infinite ease');
+    }
+
+    &__label {
+        display: inline-block;
+        @include screen(6.5rem, auto);
+        @include absolutePosition(60%, 60%);
+        transform: translate(-60%, -60%) rotate(-45deg);
+        
+
+        background: {
+            size: cover;
+            position: center;
+            repeat: no-repeat;
+        };
+
+        cursor: pointer;
+    }
+
+    &__image {
+        filter: drop-shadow(0.2rem 0.5rem 1rem $dark);
+        transition: all .3s;
+    
+        &.active {
+            filter: drop-shadow(0.2rem 0.5rem 1.5rem $yellow);
+        }
+    
+        &:hover {
+            transform: scale(2);
+            filter: drop-shadow(0.2rem 0.5rem 1.5rem $yellow);
+        }
+    }
+}

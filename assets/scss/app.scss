@@ -1,0 +1,70 @@
+@import "./_reset";
+@import "./_variables";
+@import "./mixins";
+@import "./functions";
+@import "./keyframes";
+@import "./buttons";
+@import "./modals";
+@import "./background";
+@import "./_board.scss";
+
+@font-face {
+    font-family: 'Monoton';
+    src: url('../fonts/Monoton-Regular.ttf');
+}
+
+body {
+    
+    @include screen();
+    @include textStyle($size: 1.6rem, $font: $font-montserrat);
+    
+    background: {
+        color: $dark-blue1;
+        image: linear-gradient(180deg, $dark 0%, $dark-blue2 10%, $dark-blue1 30%, $pink 100%);
+        size: cover;
+        position: center;
+        repeat: no-repeat;
+    }
+
+    transition: all .3s;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+#app {
+    @include flex();
+    @include screen();
+
+    overflow: hidden;
+}
+
+.container {
+    @include flex($direction: row);
+
+    width: 100%;
+    transition: all .3s;
+    z-index: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+.error {
+    &__input, 
+    &:active,
+    &:focus {
+        box-shadow: 0 0 0 0.1vw $strong-pink, 0 0 1vw 0 $strong-pink !important;
+    }
+    &--message {
+        text-shadow: 0 0 0.1vw $strong-pink, 0 0 1vw $strong-pink, 0 0 0.5vw $strong-pink;
+    }
+}
